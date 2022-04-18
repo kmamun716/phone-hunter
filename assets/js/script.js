@@ -19,11 +19,12 @@ const showData = (data) => {
         console.log("mobile not found")
     } else{
         const displayData = document.getElementById("display-result");
+        displayData.innerHTML="";
         data.data.map(mobile=>{
             const div = document.createElement("div");
-            div.classList = "col";
+            div.classList = "col col-md-4";
             div.innerHTML = `
-                <div class="card">
+                <div class="card text-center">
                     <img src="${mobile.image}" class="card-img-top" alt="${mobile.phone_name}">
                     <div class="card-body">
                         <h5 class="card-title">${mobile.brand}</h5>
