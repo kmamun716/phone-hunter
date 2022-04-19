@@ -12,24 +12,42 @@
 </head>
 <body>
    <div class="container mt-5">
+    <header >
+      <h1 class="text-center">Mobile Finder</h1>
+    </header>
+
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Type Mobile Name" aria-label="Type Mobile Name" aria-describedby="search-btn" id="search-text">
-        <button class="btn btn-primary text-white font-bold btn-outline-secondary" type="button" id="search-btn">Button</button>
+      <input type="text" class="form-control" placeholder="Type Mobile Name" aria-label="Type Mobile Name" aria-describedby="search-btn" id="search-text">
+      <button class="btn btn-primary text-white fw-bold btn-outline-secondary" type="button" id="search-btn">Search</button>
+    </div>
+      <div class="invalid-feedback fw-bold fs-3" id="error">Please Write Mobile Name Before click on Search.</div>
+        
+      <h1 id="text">Please Search By Mobile Name on Input Box</h1> 
+      <!-- display all mobile -->
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="display-result"> 
+        <div class="col-6">
+          
+        </div>
+      </div> 
+
+      <!-- display single mobile in modal -->
+      <div class="modal fade" id="MobileModal" tabindex="-1" aria-labelledby="mobileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" id="display-mobile">
+    
+          </div>
+        </div>
       </div>
+
+      <footer>
+        <p class="text-center fw-bold">	&copy; <span id="year"></span> all right reserved</p>
+      </footer>
    </div>
 
-   <div class="row row-cols-1 row-cols-md-3 g-4" id="display-result">
-    
-  </div>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" id="display-mobile">
-      
-    </div>
-  </div>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <!-- manual js -->
     <script src="assets/js/script.js"></script>
 </body>

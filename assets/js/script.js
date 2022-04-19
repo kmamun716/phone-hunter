@@ -2,9 +2,10 @@ document.getElementById("search-btn").addEventListener("click",()=>{
     const searchText = document.getElementById("search-text").value;
     document.getElementById("search-text").value = "";
     if(searchText.length>0){
+        document.getElementById("error").style.display="none";
         searchMobile(searchText)
     }else{
-        console.log("something wrong")
+        document.getElementById("error").style.display="block";
     }
 });
 
@@ -16,8 +17,9 @@ const searchMobile = (searchText) => {
 
 const showData = (data) => {
     if(!data.status){
-        console.log("mobile not found")
+        console.log("mobile not found");
     } else{
+        document.getElementById("text").style.display = "none";
         const displayData = document.getElementById("display-result");
         displayData.innerHTML="";
         data.data.map(mobile=>{
@@ -25,11 +27,11 @@ const showData = (data) => {
             div.classList = "col col-md-4";
             div.innerHTML = `
                 <div class="card text-center">
-                    <img src="${mobile.image}" class="card-img-top" alt="${mobile.phone_name}">
+                    <div class="mt-2"><img src="${mobile.image}" class="card-img-top" alt="${mobile.phone_name}"></div>
                     <div class="card-body">
                         <h5 class="card-title">${mobile.brand}</h5>
                         <p class="card-text">${mobile.phone_name}</p>
-                        <button class="btn btn-primary" onclick="moreInfo('${mobile.slug}')" data-bs-toggle="modal" data-bs-target="#exampleModal">More Info</button>
+                        <button class="btn btn-primary" onclick="moreInfo('${mobile.slug}')" data-bs-toggle="modal" data-bs-target="#MobileModal">Details >></button>
                     </div>
                 </div>
             `;
@@ -46,20 +48,23 @@ const moreInfo = (id)=>{
 
 const displayMobile = (mobile) =>{
     console.log(mobile)
-    const div = document.createElement("div");
-    div.classList = "modal-content";
-    div.innerHTML = `
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-    `
-    document.getElementById("display-mobile").appendChild(div);
-}
+    if(!mobile.status){
+        console.log("no data found");
+    } else {
+        const displayMobile = document.getElementById("display-mobile");
+        displayMobile.innerHTML = `
+            <div class="modal-header">
+                <h5 class="modal-title" id="mobileModalLabel">${mobile.data.name}</h5>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        `
+    }
+};
+
+//footer year showing
+document.getElementById("year").innerText = new Date().getFullYear();
