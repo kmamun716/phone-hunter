@@ -17,9 +17,12 @@ const searchMobile = (searchText) => {
 
 const showData = (data) => {
     if(!data.status){
-        console.log("mobile not found");
+        document.getElementById("display-result").innerHTML="";
+        document.getElementById("mobile-not-found").style.display="block";
+        document.getElementById("text").style.display = "none";
     } else{
         document.getElementById("text").style.display = "none";
+        document.getElementById("mobile-not-found").style.display="none";
         const displayData = document.getElementById("display-result");
         displayData.innerHTML="";
         data.data.map(mobile=>{
@@ -52,12 +55,23 @@ const displayMobile = (mobile) =>{
         console.log("no data found");
     } else {
         const displayMobile = document.getElementById("display-mobile");
+        const {storage, displaySize, chipSet, memory} = mobile.data.mainFeatures; 
         displayMobile.innerHTML = `
-            <div class="modal-header">
+            <div class="modal-header text-center">
                 <h5 class="modal-title" id="mobileModalLabel">${mobile.data.name}</h5>
             </div>
-            <div class="modal-body">
-                ...
+            <div class="modal-body text-center">
+                <div><img src="${mobile.data.image}" alt="${mobile.data.name}"/></div>
+                <p>Releasing: ${mobile.data.releaseDate? mobile.data.releaseDate : "Release Date Not Found"}</p>
+                <div id="features">
+                    <h4>Mobile Features:</h4>
+                    <div class="d-flex flex-column align-items-start border border-secondary ps-2">
+                        <p>Memory: ${memory}</p>
+                        <p>Display: ${displaySize}</p>
+                        <p>Storage: ${storage}</p>
+                        <p>Chipset: ${chipSet}</p>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
