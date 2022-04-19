@@ -1,3 +1,10 @@
 .card img{
     width: 50%;
 }
+.features p{
+    border-left: 5px solid chartreuse;
+    padding: 2px 2px;
+    background-color: brown;
+    color: white;
+    font-weight: bold;
+}
